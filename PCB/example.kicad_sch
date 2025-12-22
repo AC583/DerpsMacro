@@ -2172,7 +2172,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OPL:XIAO-RP2040-DIP"
+		(property "Footprint" "OPL Lib:XIAO-RP2040-DIP"
 			(at 123.698 116.078 0)
 			(effects
 				(font
