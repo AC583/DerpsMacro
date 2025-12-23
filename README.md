@@ -4,8 +4,8 @@ BOM:
 - 2x SK6812 MINI Leds
 - 1x XIAO RP2040
 - 8x Blank DSA Keycaps
-- 8x M3x16 Bolt
-- 8x M3 Heatset
+- 9x M3x16 Bolt
+- 9x M3 Heatset
 - 1x EC11 Rotary encoders with push-button switch
 
 PCB:
