@@ -7,6 +7,7 @@ from kmk.scanners.keypad import KeysScanner
 from kmk.keys import KC
 from kmk.modules.macros import Press, Release, Tap, Macros
 from kmk.modules.layers import Layers
+from kmk.modules.encoder import EncoderHandler
 
 keyboard = KMKKeyboard()
 
@@ -14,7 +15,27 @@ macros = Macros()
 keyboard.modules.append(macros)
 keyboard.modules.append(Layers())
 
-PINS = [board.D3, board.D4, board.D2, board.D1]
+encoder = EncoderHandler()
+keyboard.modules.append(encoder)
+
+encoder.pins = (
+    (board.D7, board.D0),  # (A, B)
+)
+
+encoder.map = [
+    (
+        (KC.VOLD, KC.VOLU),   # Layer 0: CCW, CW
+    ),
+    (
+        (KC.VOLD, KC.VOLU),   # Layer 1 (or whatever)
+    ),
+]
+
+
+PINS = [    
+    board.D1,board.D2,
+    board.D4,board.D3,board.D26,
+    board.D27,board.D28,board.D29,]
 
 keyboard.matrix = KeysScanner(
     pins=PINS,
@@ -73,6 +94,13 @@ keyboard.keymap = [
             Tap(KC.LEFT_PAREN),                              # (
             Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   # Paste
             Tap(KC.RIGHT_PAREN),                             # )
+        ),
+        # 4. Surround selected text with /* */
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),   # Copy
+            Tap(KC.SLASH), Tap(KC.KP_ASTERISK),               # /*
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   # Paste
+            Tap(KC.SLASH), Tap(KC.KP_ASTERISK)               # *
         ),
 
         KC.DF(0),   # Return to Layer 0
