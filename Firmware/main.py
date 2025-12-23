@@ -57,9 +57,10 @@ keyboard.keymap = [
 
         # 2. Paste selected text to ChatGPT
         KC.MACRO(
-            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),   # Copy
-            Press(KC.LALT), Tap(KC.TAB), Release(KC.LALT),   # Switch window
-            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   # Paste
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),
+            Press(KC.LALT), Tap(KC.TAB), Release(KC.LALT),
+            *[Tap(k) for k in "Explain this clearly: "],
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),
             Tap(KC.ENTER),
         ),
 
@@ -69,7 +70,33 @@ keyboard.keymap = [
             Press(KC.LALT), Tap(KC.TAB), Release(KC.LALT),   # Switch to ChatGPT
             Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   # Paste screenshot
         ),
+        # 4. New Chat (CTRL + L to focus / ENTER)
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.L), Release(KC.LCTRL),
+            Tap(KC.ENTER),
+        ),
+        # 5. Rewrite selected text
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),
+            Press(KC.LALT), Tap(KC.TAB), Release(KC.LALT),
+            *[Tap(k) for k in "Rewrite this clearer and more professional: "],
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),
+            Tap(KC.ENTER),
+        ),
+        # 6. Coding helper
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),
+            Press(KC.LALT), Tap(KC.TAB), Release(KC.LALT),
+            *[Tap(k) for k in "Explain this code, then suggest improvements:\n"],
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),
+            Tap(KC.ENTER),
+        ),
+        # 7. Emoji Picker
+        KC.MACRO(
+            Press(KC.LWIN), Tap(KC.DOT), Release(KC.LWIN),
+        ),
 
+        # 8 Switch to Layer 1 (Typing)
         KC.DF(1),    # Return to Layer 1
     ],
 
@@ -90,19 +117,41 @@ keyboard.keymap = [
 
         # 3. Surround selected text with parentheses
         KC.MACRO(
-            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),   # Copy
-            Tap(KC.LEFT_PAREN),                              # (
-            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   # Paste
-            Tap(KC.RIGHT_PAREN),                             # )
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),   
+            Tap(KC.LEFT_PAREN),                              
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   
+            Tap(KC.RIGHT_PAREN),                             
         ),
         # 4. Surround selected text with /* */
         KC.MACRO(
-            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),   # Copy
-            Tap(KC.SLASH), Tap(KC.KP_ASTERISK),               # /*
-            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   # Paste
-            Tap(KC.SLASH), Tap(KC.KP_ASTERISK)               # *
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),   
+            Tap(KC.SLASH), Tap(KC.KP_ASTERISK),               
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),   
+            Tap(KC.SLASH), Tap(KC.KP_ASTERISK)               
+        ),
+        # 5. Surround with []
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),
+            Tap(KC.LBRACKET),
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),
+            Tap(KC.RBRACKET),
+        ),
+        # 6. Surround with <>
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),
+            Tap(KC.LABK),
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),
+            Tap(KC.RABK),
+        ),
+        # 7. Surround with ||
+        KC.MACRO(
+            Press(KC.LCTRL), Tap(KC.C), Release(KC.LCTRL),
+            Tap(KC.PIPE),
+            Press(KC.LCTRL), Tap(KC.V), Release(KC.LCTRL),
+            Tap(KC.PIPE),
         ),
 
+        # 8 Switch to Layer 0 (AI Assistant)
         KC.DF(0),   # Return to Layer 0
     ]
 ]
